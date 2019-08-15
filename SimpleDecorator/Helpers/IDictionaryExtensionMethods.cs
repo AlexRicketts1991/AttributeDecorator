@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AttributeDecorator.Helpers
+namespace SimpleDecorator.Helpers
 {
     public static class IDictionaryExtensionMethods
     {

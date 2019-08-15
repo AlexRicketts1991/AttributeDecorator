@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttributeDecorator", "AttributeDecorator.csproj", "{7BDB5196-3CF4-4CB5-83BD-FDF1ABCE4EC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleDecorator", "SimpleDecorator.csproj", "{7BDB5196-3CF4-4CB5-83BD-FDF1ABCE4EC2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "..\Example\Example.csproj", "{18F8856F-9032-46EC-8861-64B057C83246}"
 EndProject

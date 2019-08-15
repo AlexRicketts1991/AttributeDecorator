@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AttributeDecorator\AttributeDecorator.csproj" />
+    <ProjectReference Include="..\SimpleDecorator\SimpleDecorator.csproj" />
   </ItemGroup>
 
 </Project>

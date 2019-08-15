@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AttributeDecorator
+namespace SimpleDecorator
 {
     public static class ServiceDecorator
     {
