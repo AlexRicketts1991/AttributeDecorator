@@ -8,7 +8,7 @@ namespace AttributeDecorator
 {
     internal class PipelineBuilder
     {
-        public static void BuildAttributeDecoratorPipeline(
+        internal static void BuildAttributeDecoratorPipeline(
             IServiceCollection services,
             IDictionary<Type, Type> attributeDecorators,
             KeyValuePair<Type, Type> attributeDecorator)
