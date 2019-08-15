@@ -6,9 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AttributeDecorator" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0-preview4.19216.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0-preview4.19216.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AttributeDecorator\AttributeDecorator.csproj" />
   </ItemGroup>
 
 </Project>

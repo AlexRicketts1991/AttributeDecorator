@@ -35,7 +35,7 @@ namespace Example
             //                new DummyService())), x.GetService<AppConfiguration>()));
 
             // Use default to scan for decorators with naming convention
-            serviceProvider.AddDecoratedService<DummyService>(ServiceLifetime.Transient);
+            serviceProvider.AddDecoratedService<DummyService>();
 
             return serviceProvider.BuildServiceProvider();
         }

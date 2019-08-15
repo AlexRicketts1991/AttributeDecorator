@@ -8,14 +8,14 @@ namespace AttributeDecorator
 {
     public static class ServiceDecorator
     {
-        public static void AddDecoratedService<T>(this IServiceCollection services, ServiceLifetime serviceLifetime)
+        public static void AddDecoratedService<T>(this IServiceCollection services)
         {
             var attributes = typeof(T).GetCustomAttributes();
 
             var attributeDecorators = GetAttributeDecorators(attributes);
 
             foreach (var attributeDecorator in attributeDecorators)
-                PipelineBuilder.BuildAttributeDecoratorPipeline(services, attributeDecorators, attributeDecorator, serviceLifetime);
+                PipelineBuilder.BuildAttributeDecoratorPipeline(services, attributeDecorators, attributeDecorator);
         }
 
         private static Dictionary<Type, Type> GetAttributeDecorators(IEnumerable<Attribute> attributes)

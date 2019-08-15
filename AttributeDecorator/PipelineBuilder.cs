@@ -11,8 +11,7 @@ namespace AttributeDecorator
         public static void BuildAttributeDecoratorPipeline(
             IServiceCollection services,
             IDictionary<Type, Type> attributeDecorators,
-            KeyValuePair<Type, Type> attributeDecorator,
-            ServiceLifetime serviceLifetime)
+            KeyValuePair<Type, Type> attributeDecorator)
         {
             // Get all interfaces for the decorator
             var interfaceTypes = attributeDecorator.Value.GetInterfaces();
@@ -21,7 +20,7 @@ namespace AttributeDecorator
             IEnumerable<Type> implementedTypes = GetImplementedTypes(interfaceTypes);
 
             foreach (var type in implementedTypes)
-                BuildPipelineForImplementedType(services, attributeDecorators, type, serviceLifetime);
+                BuildPipelineForImplementedType(services, attributeDecorators, type);
         }
 
         private static IEnumerable<Type> GetImplementedTypes(Type[] interfaceTypes)
@@ -40,8 +39,7 @@ namespace AttributeDecorator
         private static void BuildPipelineForImplementedType(
             IServiceCollection services, 
             IDictionary<Type, Type> attributeDecorators, 
-            Type type,
-            ServiceLifetime serviceLifetime)
+            Type type)
         {
             // Filter where type is using attribute that has decorated service.
             var attributes = type.GetCustomAttributes(false)
@@ -49,15 +47,14 @@ namespace AttributeDecorator
                                     .Intersect(attributeDecorators.Keys);
 
             foreach (var attribute in attributes)
-                BuildPipeline(services, type, attributeDecorators, attributes, serviceLifetime);
+                BuildPipeline(services, type, attributeDecorators, attributes);
         }
 
         private static void BuildPipeline(
             IServiceCollection services,
             Type type,
             IDictionary<Type, Type> attributeDecorators,
-            IEnumerable<Type> attributes,
-            ServiceLifetime serviceLifetime)
+            IEnumerable<Type> attributes)
         {
             List<Type> pipeline = attributes
                                     .Select(x => ToDecorator(x, attributeDecorators))
@@ -69,35 +66,9 @@ namespace AttributeDecorator
 
             Func<IServiceProvider, object> factory = BuildPipeline(pipeline, interfaceType);
 
-            AddService(services, serviceLifetime, interfaceType, factory);
+            services.AddScoped(interfaceType, factory);
         }
-
-        private static void AddService(
-            IServiceCollection services,
-            ServiceLifetime serviceLifetime,
-            Type interfaceType,
-            Func<IServiceProvider, object> factory)
-        {
-            switch (serviceLifetime)
-            {
-                case ServiceLifetime.Scoped:
-                    {
-                        services.AddScoped(interfaceType, factory);
-                        break;
-                    }
-                case ServiceLifetime.Transient:
-                    {
-                        services.AddTransient(interfaceType, factory);
-                        break;
-                    }
-                case ServiceLifetime.Singleton:
-                    {
-                        services.AddSingleton(interfaceType, factory);
-                        break;
-                    }
-            }
-        }
-
+                
         private static Func<IServiceProvider, object> BuildPipeline(List<Type> pipeline, Type interfaceType)
         {
             List<ConstructorInfo> ctors = pipeline
