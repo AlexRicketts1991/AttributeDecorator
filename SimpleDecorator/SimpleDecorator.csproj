@@ -6,7 +6,7 @@
     <Description>Use attributes to wire up your decorators to an implementation of an interface!</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>Alex Ricketts</Authors>
-    <Version>1.0.1</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
